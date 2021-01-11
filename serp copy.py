@@ -33,8 +33,14 @@ class Head(Turtle):
 
 head = Head("0", (0, 0))
 
+# Comida
+
 
 class Food(Turtle):
+    '''
+    Manzanas
+    '''
+
     def __init__(self, speed, color):
         super().__init__(shape='circle')
 
@@ -45,9 +51,10 @@ class Food(Turtle):
 
 food = Food("0", ("red"))
 
+# Segmentos de cuerpo
+segmentos = []
+
 # Funciones
-
-
 '''class Movement(Turtle):
 
     def __init__(self, up, down, left, right):
@@ -112,6 +119,27 @@ while True:
         x = random.randint(-280, 280)
         y = random.randint(-280, 280)
         food.goto(x, y)
+
+# Cabeza de la serpiente
+        nw = t.Turtle()
+        nw.speed(0)
+        nw.shape("square")
+        nw.penup()
+        nw.color("green")
+        segmentos.append(nw)
+
+# Mover el cuerpo de la serpiente
+    totalSeg = len(segmentos)
+    for index in range(totalSeg - 1, 0, -1):
+        x = segmentos[index - 1].xcor()
+        y = segmentos[index - 1].ycor()
+        segmentos[index].goto(x, y)
+
+    if totalSeg > 0:
+        x = head.xcor()
+        y = head.ycor()
+        segmentos[0].goto(x, y)
+
     movement()
 
     time.sleep(postpone)
