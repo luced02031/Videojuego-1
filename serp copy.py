@@ -1,6 +1,6 @@
 import turtle as t
 import time
-
+import random
 from turtle import Turtle
 
 postpone = 0.1
@@ -19,6 +19,10 @@ window.tracer(0)
 
 
 class Head(Turtle):
+    '''
+    Cabeza de la serpiente
+    '''
+
     def __init__(self, speed, positon):
         super().__init__(shape='square')
 
@@ -27,30 +31,43 @@ class Head(Turtle):
         self.direction = "stop"
 
 
-h = Head("0", (0, 0))
+head = Head("0", (0, 0))
 
+
+class Food(Turtle):
+    def __init__(self, speed, color):
+        super().__init__(shape='circle')
+
+        self.color("red")
+        self.penup()
+        self.goto(0, 100)
+
+
+food = Food("0", ("red"))
 
 # Funciones
-class Movement(Turtle):
+
+
+'''class Movement(Turtle):
 
     def __init__(self, up, down, left, right):
-        super().__init__(direction='stop')
+        super().__init__(direction='stop')'''
 
 
 def up():
-    h.direction = "up"
+    head.direction = "up"
 
 
 def down():
-    h.direction = "down"
+    head.direction = "down"
 
 
 def left():
-    h.direction = "left"
+    head.direction = "left"
 
 
 def right():
-    h.direction = "right"
+    head.direction = "right"
 
 
 # Entrada del teclado
@@ -70,27 +87,31 @@ def movement():
     Función para controlar el movimiento de la cabeza
     '''
 # Movimientod de la cabeza hacia arriba
-    if h.direction == "up":
-        y = h.ycor()
-        h.sety(y + 20)
+    if head.direction == "up":
+        y = head.ycor()
+        head.sety(y + 20)
 # Movimientod de la cabeza hacia abajo
-    if h.direction == "down":
-        y = h.ycor()
-        h.sety(y - 20)
+    if head.direction == "down":
+        y = head.ycor()
+        head.sety(y - 20)
 # Movimientod de la cabeza hacia la izquierda
-    if h.direction == "left":
-        x = h.xcor()
-        h.setx(x - 20)
+    if head.direction == "left":
+        x = head.xcor()
+        head.setx(x - 20)
 # Movimientod de la cabeza hacia la derecha
-    if h.direction == "right":
-        x = h.xcor()
-        h.setx(x + 20)
+    if head.direction == "right":
+        x = head.xcor()
+        head.setx(x + 20)
 
 
 # BUCLE PRINCIPAL
 while True:
     window.update()
 
+    if head.distance(food) < 20:
+        x = random.randint(-280, 280)
+        y = random.randint(-280, 280)
+        food.goto(x, y)
     movement()
 
     time.sleep(postpone)
