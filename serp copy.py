@@ -22,52 +22,47 @@ class Head(Turtle):
     def __init__(self, speed, positon):
         super().__init__(shape='square')
 
-        self.color('green')
+        self.color("green")
         self.penup()
-        self.goto(0, 0)
+        self.direction = "stop"
 
 
-# Cabeza de la serpiente
-head = t.Turtle()
-head.speed(0)
-# Se le da una forma cuadrara a la figura
-head.shape("square")
-# Se elimina el rastro que deja la figura
-head.penup()
-# Se pocisiona el elemento gráfico en las coo. del plano
-head.goto(0, 0)
-# Se mantiene estático el elemento hasta que lo movamos
-head.direction = "stop"
-# Color de head
-head.color("green")
+h = Head("0", (0, 0))
 
 
 # Funciones
-'''class Movement(Turtle):
+class Movement(Turtle):
 
     def __init__(self, up, down, left, right):
-        super().__init__(direction='stop')'''
+        super().__init__(direction='stop')
 
 
 def up():
-    head.direction = "up"
+    h.direction = "up"
 
 
 def down():
-    head.direction = "down"
+    h.direction = "down"
 
 
 def left():
-    head.direction = "left"
+    h.direction = "left"
 
 
 def right():
-    head.direction = "right"
+    h.direction = "right"
 
 
-# Teclado
+# Entrada del teclado
 window.listen()
+# Arriba
 window.onkeypress(up, "Up")
+# Abajo
+window.onkeypress(down, "Down")
+# Derecha
+window.onkeypress(right, "Right")
+# Izquierda
+window.onkeypress(left, "Left")
 
 
 def movement():
@@ -75,21 +70,21 @@ def movement():
     Función para controlar el movimiento de la cabeza
     '''
 # Movimientod de la cabeza hacia arriba
-    if head.direction == "up":
-        y = head.ycor()
-        head.sety(y + 20)
+    if h.direction == "up":
+        y = h.ycor()
+        h.sety(y + 20)
 # Movimientod de la cabeza hacia abajo
-    if head.direction == "down":
-        y = head.ycor()
-        head.sety(y - 20)
+    if h.direction == "down":
+        y = h.ycor()
+        h.sety(y - 20)
 # Movimientod de la cabeza hacia la izquierda
-    if head.direction == "left":
-        x = head.xcor()
-        head.setx(x - 20)
+    if h.direction == "left":
+        x = h.xcor()
+        h.setx(x - 20)
 # Movimientod de la cabeza hacia la derecha
-    if head.direction == "right":
-        x = head.xcor()
-        head.setx(x + 20)
+    if h.direction == "right":
+        x = h.xcor()
+        h.setx(x + 20)
 
 
 # BUCLE PRINCIPAL
